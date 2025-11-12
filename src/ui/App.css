@@ -1,0 +1,26 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.image-viewer {
+  margin-top: 50px;
+  background-color: ;
+}
+
+.checkerboard-conic-background {
+  --square-size: 20px;
+  max-width: 600;
+  max-height: 600;
+  background: repeating-conic-gradient(from 0deg,
+      #ccc 0deg 90deg,
+      #333 90deg 180deg);
+  background-size: calc(var(--square-size) * 2) calc(var(--square-size) * 2);
+}
+
+
+.card {
+  padding: 2em;
+}
