@@ -1,10 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
   const [imgPath, setImgPath] = useState<string | null>(null);
   const [filePath, setFilePath] = useState<string | null>(null);
   const [frames, setFrameCount] = useState<number | undefined>(1);
+  const [imgSize, setImgSize] = useState({ width: 0, height: 0 });
 
   async function handleOpen() {
     const newFilePath = await window.electronAPI.openImageDialog();
@@ -21,7 +22,13 @@ function App() {
       console.log("The file path is:", filePath);
       setImgPath(null);
       setFilePath(null);
+      setImgSize({ width: 0, height: 0 });
     }
+  }
+
+  function handleImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
+    const { naturalWidth, naturalHeight } = e.currentTarget;
+    setImgSize({ width: naturalWidth, height: naturalHeight });
   }
 
   return (
@@ -57,16 +64,21 @@ function App() {
             }}
           />
           <span>
-            Image Width: <span>{innerWidth}</span>
+            Image Width: <b>{imgSize.width}</b> px
           </span>
           <span>
-            Image Height: <span>{innerHeight}</span>
+            Image Height: <b>{imgSize.height}</b> px
           </span>
         </div>
 
         {imgPath && (
           <div className="image-viewer">
-            <img src={imgPath} className="checkerboard-conic-background" />
+            <img
+              src={imgPath}
+              className="checkerboard-conic-background"
+              onLoad={handleImageLoad}
+              alt="loaded"
+            />
           </div>
         )}
       </div>
