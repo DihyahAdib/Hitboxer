@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ImageOff, Images, ImageUp } from "lucide-react";
 import "./App.css";
 
 function App() {
@@ -48,10 +49,20 @@ function App() {
       <div className="editor">
         <div className="button-panel">
           <button onClick={handleOpen}>
-            {!imgPath ? "Open Image" : "Change Image"}
+            {!imgPath ? (
+              <>
+                <ImageUp color="white" size={"1rem"} /> <span>Open Image</span>
+              </>
+            ) : (
+              <>
+                <Images color="white" size={"1rem"} /> <span>Change Image</span>
+              </>
+            )}
           </button>
 
-          <button onClick={handleClose}>Remove Image</button>
+          <button onClick={handleClose}>
+            <ImageOff color="white" size={"1rem"} /> <span>Remove Image</span>
+          </button>
 
           {frames === 1 ? (
             <span className="span-style">
@@ -79,11 +90,13 @@ function App() {
 
           {scale === 3 ? (
             <span>
-              Sprite-sheet Scale: {scale}{" "}
+              Sprite sheet Scale: {scale}{" "}
               <span className="tiptool-text">(Default)</span>
             </span>
           ) : (
-            <span>Sprite-sheet Scale: {scale}</span>
+            <span>
+              Sprite-sheet Scale: {scale} <span className=""></span>
+            </span>
           )}
 
           <p className="tiptool-text">
@@ -101,17 +114,31 @@ function App() {
               setScaleSize(value);
             }}
           />
-          <span className="img-dim">
-            Image Width: <b>{imgSize.width}</b> px
+          {imgSize.width === imgSize.width * scale! ? (
+            <>
+              <span style={{ color: "#eeeeeeff" }}>
+                Image Width: <b>{imgSize.width}</b> px
+              </span>
+              <span style={{ color: "#eeeeeeff" }}>
+                Image Height: <b>{imgSize.height}</b> px
+              </span>
+            </>
+          ) : (
+            <>
+              <span style={{ color: "#eeeeeeff" }}>
+                Image Width: <b>{imgSize.width}</b> px
+              </span>
+              <span style={{ color: "#eeeeeeff" }}>
+                Image Height: <b>{imgSize.height}</b> px
+              </span>
+            </>
+          )}
+          <div className="divider"></div>
+          <span style={{ color: "#aaa882ff" }}>
+            Scaled Image Width: <b>{imgSize.width * scale!}</b> px
           </span>
-          <span className="img-dim">
-            Image Height: <b>{imgSize.height}</b> px
-          </span>
-          <span className="img-dim">
-            Scaled Image Width: <b>{imgSize.width * scale}</b> px
-          </span>
-          <span className="img-dim">
-            Scaled Image Height: <b>{imgSize.height * scale}</b> px
+          <span style={{ color: "#aaa882ff" }}>
+            Scaled Image Height: <b>{imgSize.height * scale!}</b> px
           </span>
         </div>
 
@@ -120,8 +147,8 @@ function App() {
             <img
               src={imgPath}
               className="checkerboard-conic-background"
-              width={imgSize.width * scale}
-              height={imgSize.height * scale}
+              width={imgSize.width * scale!}
+              height={imgSize.height * scale!}
               onLoad={handleImageLoad}
               alt="loaded"
             />
