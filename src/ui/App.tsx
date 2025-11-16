@@ -8,7 +8,8 @@ function App() {
   const [frames, setFrameCount] = useState<number | undefined>(1);
   const [scale, setScaleSize] = useState<number | undefined>(3);
   const [imgSize, setImgSize] = useState({ width: 0, height: 0 });
-
+  const atMax = scale === 10;
+  const sameScales = imgSize.width === imgSize.width * scale!;
   async function handleOpen() {
     const newFilePath = await window.electronAPI.openImageDialog();
     if (!newFilePath) return;
@@ -114,31 +115,21 @@ function App() {
               setScaleSize(value);
             }}
           />
-          {imgSize.width === imgSize.width * scale! ? (
-            <>
-              <span style={{ color: "#eeeeeeff" }}>
-                Image Width: <b>{imgSize.width}</b> px
-              </span>
-              <span style={{ color: "#eeeeeeff" }}>
-                Image Height: <b>{imgSize.height}</b> px
-              </span>
-            </>
-          ) : (
-            <>
-              <span style={{ color: "#eeeeeeff" }}>
-                Image Width: <b>{imgSize.width}</b> px
-              </span>
-              <span style={{ color: "#eeeeeeff" }}>
-                Image Height: <b>{imgSize.height}</b> px
-              </span>
-            </>
-          )}
-          <div className="divider"></div>
-          <span style={{ color: "#aaa882ff" }}>
-            Scaled Image Width: <b>{imgSize.width * scale!}</b> px
+
+          <span>
+            Image Width: <b>{imgSize.width} px</b>
           </span>
-          <span style={{ color: "#aaa882ff" }}>
-            Scaled Image Height: <b>{imgSize.height * scale!}</b> px
+          <span>
+            Image Height: <b>{imgSize.height} px</b>
+          </span>
+
+          <div className="divider"></div>
+
+          <span>
+            Scaled Image Width: <b>{imgSize.width * scale!} px</b>
+          </span>
+          <span>
+            Scaled Image Height: <b>{imgSize.height * scale!} px</b>
           </span>
         </div>
 

@@ -144,3 +144,15 @@ button:hover {
   background: #305e49;
   margin: 0px 0;
 }
+
+.scale-max {
+  color: rgba(114, 70, 64, 1);
+}
+
+.same-scales {
+  color: #aaa882ff;
+}
+
+.base-color {
+  color: #b1b1b1ff;
+}
