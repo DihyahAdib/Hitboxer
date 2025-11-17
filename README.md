@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+## Hitboxer — Sprite Sheet hitbox creation tool.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hitboxer is a desktop tool built with Electron + React + TypeScript designed for artists, developers, and modders who need a fast, clean way to create hitboxes, edit them with an abundant of stats & data, and export results as a json file ready to be parsed by an game engine.
 
-Currently, two official plugins are available:
+It supports independent scrolling panels, color-coded metadata, dynamic UI scaling, A butt load of settings, and a focused layout for productivity.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Hitboxer was built out of the frustration alot of fellow game developers run into when making 2D games and dealing with 2D art animations be it drawn HD or pixel art and thats the creation, managing, and usage of hitboxes.
+In my case I- like others were exporting json aseprite spritesheets data, and using their "slice" tool as a bootleg hitbox outline so that it can be parsed by our game engines. but it was an absolute positioning from the origin for the dimensions of the hitbox and not relative to IT'S specific frame, this pretty much ruined the entire experince for me aseprite seem to have forgotten about the communities request.
 
-## React Compiler
+I looked around and found others who created something like mine but most of theirs are out of date builds and I wanted to create an updated project for the people that I might maintain.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+So with that, I truly hope you enjoy Hitboxer!
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🖼 Image Viewer
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Scrollable image panel with independent scrolling
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Scales up to 16×
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Accurate width/height readings
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Automatic recalculation of scaled dimensions
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🎚 Scaling Slider
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+MUI slider restyled to match app’s green theme
+
+Custom square thumb
+
+Smooth scale adjustment between 1–16×
+
+Color-coded metadata:
+
+Green = normal
+
+Yellow = scaled value matches original
+
+Red = max scale reached
+
+### 📐 Metadata Panel
+
+Fixed left panel that scrolls independently
+
+Displays:
+
+Original width/height
+
+Scaled width/height
+
+Divider line separating original vs scaled values
+
+### 💬 Tooltip Banner
+
+Full-width bar above the image viewer
+
+Shows contextual hints
+
+Smooth animation & fade-out
+
+### 🖲 Tool Panel
+
+Change-image buttons
+
+Social buttons that link to your platforms
+
+Centered icon + text alignment
+
+Clean, green-theme styling
+
+### 📁 File Handling
+
+Supports PNG, JPG, WEBP, etc.
+
+Gracefully shows fallback icon when image fails to load
+
+Safe path handling using Electron preload
