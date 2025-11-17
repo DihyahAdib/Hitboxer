@@ -67,9 +67,7 @@ function App() {
         <span>
           Image Height: <b className={className}>{imgSize.height} px</b>
         </span>
-
         <div className="divider"></div>
-
         <span>
           Scaled Image Width:{" "}
           <b className={className}>{imgSize.width * scale} px</b>
