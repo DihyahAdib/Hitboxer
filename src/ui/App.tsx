@@ -10,6 +10,7 @@ import {
   Youtube,
   Github,
   Linkedin,
+  RefreshCcw,
 } from "lucide-react";
 import "./App.css";
 
@@ -48,6 +49,13 @@ function App() {
     const { naturalWidth, naturalHeight } = e.currentTarget;
     setImgSize({ width: naturalWidth, height: naturalHeight });
   }
+
+  //Fx this method
+  // function resetToDefaults() {
+  //   frames = 1;
+  //   scale = 10;
+  //   bgsize = 80;
+  // }
 
   function handleColorCoding(scale: number) {
     const atMax = scale === 16;
@@ -108,15 +116,6 @@ function App() {
             <Linkedin size={18} />
           </a>
 
-          {/* <a
-            href="https://instagram.com/YOUR_USERNAME"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-btn"
-          >
-            <Instagram size={18} />
-          </a> */}
-
           <a
             href="https://www.youtube.com/@SeamlessError"
             target="_blank"
@@ -168,6 +167,7 @@ function App() {
         <span className="span-style">
           Frame Count: {frames}{" "}
           {frames === 1 && <span className="tiptool-text">(Default)</span>}
+          {frames !== 1 && <RefreshCcw size={18} className="tiptool-text" />}
         </span>
 
         <input
@@ -182,6 +182,7 @@ function App() {
         <span>
           Sprite-sheet Scale: {scale}{" "}
           {scale === 10 && <span className="tiptool-text">(Default)</span>}
+          {scale !== 10 && <RefreshCcw size={18} className="tiptool-text" />}
         </span>
 
         <Slider
@@ -231,6 +232,7 @@ function App() {
         <span>
           Background Grid Size: {bgsize}{" "}
           {bgsize === 80 && <span className="tiptool-text">(Default)</span>}
+          {bgsize !== 80 && <RefreshCcw size={18} className="tiptool-text" />}
         </span>
 
         <Slider
