@@ -6,7 +6,6 @@ import {
   ImageUp,
   FlipHorizontal,
   FlipVertical,
-  Instagram,
   Youtube,
   Github,
   Linkedin,
@@ -15,14 +14,20 @@ import {
 import "./App.css";
 
 function App() {
+  const def = {
+    Frame: 1,
+    Scale: 10,
+    BgSize: 64,
+  };
+
   const [imgPath, setImgPath] = useState<string | null>(null);
   const [filePath, setFilePath] = useState<string | null>(null);
   const [imgFlippedHorizontally, setHorizontal] = useState<boolean>(true);
   const [imgFlippedVertically, setVertical] = useState<boolean>(true);
 
-  const [frames, setFrameCount] = useState<number>(1);
-  const [scale, setScaleSize] = useState<number>(10);
-  const [bgsize, setBgSize] = useState<number>(64);
+  const [frames, setFrameCount] = useState<number>(def.Frame);
+  const [scale, setScaleSize] = useState<number>(def.Scale);
+  const [bgsize, setBgSize] = useState<number>(def.BgSize);
 
   const [imgSize, setImgSize] = useState({ width: 0, height: 0 });
 
@@ -49,13 +54,6 @@ function App() {
     const { naturalWidth, naturalHeight } = e.currentTarget;
     setImgSize({ width: naturalWidth, height: naturalHeight });
   }
-
-  //Fx this method
-  // function resetToDefaults() {
-  //   frames = 1;
-  //   scale = 10;
-  //   bgsize = 80;
-  // }
 
   function handleColorCoding(scale: number) {
     const atMax = scale === 16;
@@ -167,7 +165,21 @@ function App() {
         <span className="span-style">
           Frame Count: {frames}{" "}
           {frames === 1 && <span className="tiptool-text">(Default)</span>}
-          {frames !== 1 && <RefreshCcw size={18} className="tiptool-text" />}
+          {frames !== 1 && (
+            <span className="tiptool-text">
+              {" "}
+              <RefreshCcw
+                size={18}
+                style={{
+                  cursor: "pointer",
+                  verticalAlign: "middle",
+                  display: "inline-flex",
+                  alignItems: "center",
+                }}
+                onClick={() => setFrameCount(1)}
+              />
+            </span>
+          )}
         </span>
 
         <input
@@ -182,7 +194,19 @@ function App() {
         <span>
           Sprite-sheet Scale: {scale}{" "}
           {scale === 10 && <span className="tiptool-text">(Default)</span>}
-          {scale !== 10 && <RefreshCcw size={18} className="tiptool-text" />}
+          {scale !== 10 && (
+            <span
+              className="tiptool-text"
+              style={{
+                cursor: "pointer",
+                verticalAlign: "middle",
+                display: "inline-flex",
+                alignItems: "center",
+              }}
+            >
+              <RefreshCcw size={18} onClick={() => setScaleSize(10)} />
+            </span>
+          )}
         </span>
 
         <Slider
@@ -232,7 +256,19 @@ function App() {
         <span>
           Background Grid Size: {bgsize}{" "}
           {bgsize === 80 && <span className="tiptool-text">(Default)</span>}
-          {bgsize !== 80 && <RefreshCcw size={18} className="tiptool-text" />}
+          {bgsize !== 80 && (
+            <span
+              className="tiptool-text"
+              style={{
+                cursor: "pointer",
+                verticalAlign: "middle",
+                display: "inline-flex",
+                alignItems: "center",
+              }}
+            >
+              <RefreshCcw size={18} onClick={() => setBgSize(80)} />
+            </span>
+          )}
         </span>
 
         <Slider
@@ -281,6 +317,7 @@ function App() {
         <h1 style={{ color: "#ffffff09" }}>More Coming soon...</h1>
       </div>
       <div className="editor">
+        {/* <canvas id="pixelGrid" width={width}></canvas> */}
         <div className="tooltip-bar">
           <p className="header-text">
             {filePath ? (
